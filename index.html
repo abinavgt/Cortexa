@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cortexa — Neural Session Hub</title>
+  <meta name="description" content="Real-time emotion, focus and drowsiness tracking powered by Cortexa AI."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="logo">
+    <span class="logo-brand">CORTEXA</span>
+  </div>
+  <ul class="nav-links">
+    <li class="active" onclick="switchTab('description')" style="cursor: pointer; transition: 0.3s; padding: 6px 12px; border-radius: 6px;">Dashboard</li>
+    <li onclick="openDocsModal()" style="cursor: pointer; transition: 0.3s; padding: 6px 12px; border-radius: 6px;">Docs</li>
+    <li onclick="switchTab('insights')" style="cursor: pointer; transition: 0.3s; padding: 6px 12px; border-radius: 6px;">Insights</li>
+  </ul>
+  <div class="nav-right">
+    <span class="api-pill" id="apiStatus">● Offline</span>
+    <div class="profile-avatar">U</div>
+  </div>
+</nav>
+
+<!-- ── PAGE WRAPPER ─────────────────────────────────────── -->
+<div class="page-wrapper">
+
+  <!-- LEFT / MAIN COLUMN -->
+  <div class="col-main">
+
+    <!-- Subheader -->
+    <div class="subheader">
+      <div>
+        <h1 class="page-title">Neural Session Hub</h1>
+        <p class="page-sub">Real-time emotion, focus &amp; drowsiness tracking powered by Cortexa AI</p>
+      </div>
+      <div class="action-btns">
+        <button class="btn-ghost" onclick="openModelModal()">Model</button>
+        <button class="btn-ghost" onclick="window.open('https://github.com/abinavgt/Cortexa', '_blank')">Reach Out</button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" id="tab-description" onclick="switchTab('description')">Description</button>
+      <button class="tab"        id="tab-features"    onclick="switchTab('features')">Features</button>
+      <button class="tab"        id="tab-trends"      onclick="switchTab('trends')">Neural Trends</button>
+      <button class="tab"        id="tab-insights"    onclick="switchTab('insights')">Insights</button>
+    </div>
+
+    <!-- ══════ DESCRIPTION PANEL ══════ -->
+    <div class="tab-panel" id="panel-description">
+      <div class="panel-inner">
+        <div class="desc-header">
+          <h2>How Cortexa Reads You</h2>
+          <p class="desc-sub">Five stages. One truth.</p>
+        </div>
+        <div class="stages-grid">
+          <div class="stage-card">
+            <span class="stage-num">01</span>
+            <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <h3>The Input</h3>
+            <p class="stage-quote">"Raw human signals, captured in real time."</p>
+            <p class="stage-desc">High-fidelity optical mapping of micro-movements.</p>
+          </div>
+          <div class="stage-card">
+            <span class="stage-num">02</span>
+            <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="2,14 7,8 12,14 17,4 22,10"/></svg>
+            <h3>The Signal</h3>
+            <p class="stage-quote">"Subtle patterns begin to emerge."</p>
+            <p class="stage-desc">Facial landmark deviations and ocular signals isolated.</p>
+          </div>
+          <div class="stage-card stage-accent">
+            <span class="stage-num">03</span>
+            <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+            <h3>The Pattern</h3>
+            <p class="stage-quote">"Behavior starts forming a story."</p>
+            <p class="stage-desc">Blink ratios, micro-expressions &amp; head pose mapped against baselines.</p>
+          </div>
+          <div class="stage-card">
+            <span class="stage-num">04</span>
+            <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+            <h3>The Engine</h3>
+            <p class="stage-quote">"Intelligence processes what's unseen."</p>
+            <p class="stage-desc">Structural signals into probabilistic metrics.</p>
+          </div>
+          <div class="stage-card">
+            <span class="stage-num">05</span>
+            <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+            <h3>The Outcome</h3>
+            <p class="stage-quote">"Insights that go beyond the surface."</p>
+            <p class="stage-desc">Emotion, focus, and fatigue decoupled entirely.</p>
+          </div>
+          <div class="stage-card stage-ghost">
+            <div class="stage-ghost-inner">
+              <span class="ghost-label">Try It Live</span>
+              <p class="ghost-desc">Activate your neural session and experience real-time tracking.</p>
+              <button class="btn-try" onclick="activateMode('emotion')">Start →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ FEATURES PANEL ══════ -->
+    <div class="tab-panel hidden" id="panel-features">
+      <div class="panel-inner">
+        <div class="desc-header">
+          <h2>Neural System Features</h2>
+          <p class="desc-sub">Three dedicated lenses for real-time human decoding.</p>
+        </div>
+        <div class="modes-grid">
+
+          <!-- Emotion Insight -->
+          <div class="mode-card">
+            <div class="mode-card-hdr">
+              <span class="mode-card-lbl">FACE MESH ACTIVE</span>
+              <h4>Emotion Insight</h4>
+            </div>
+            <p class="mode-card-desc">Advanced expression analysis detecting joy, sadness, fear, and neutral states through deep neural mapping.</p>
+            <button class="btn-card-action" onclick="activateMode('emotion')">ACTIVATE →</button>
+          </div>
+
+          <!-- AlertGuard -->
+          <div class="mode-card">
+            <div class="mode-card-hdr">
+              <span class="mode-card-lbl">EAR TRACKING</span>
+              <h4>AlertGuard</h4>
+            </div>
+            <p class="mode-card-desc">Real-time eye aspect ratio (EAR) monitoring to detect drowsiness and fatigue before they become a risk.</p>
+            <button class="btn-card-action" onclick="activateMode('drowsy')">ACTIVATE →</button>
+          </div>
+
+          <!-- Attention Matrix -->
+          <div class="mode-card">
+            <div class="mode-card-hdr">
+              <span class="mode-card-lbl">GAZE TRIANGULATION</span>
+              <h4>Attention Matrix</h4>
+            </div>
+            <p class="mode-card-desc">Head pose estimation and attention tracking to identify distraction and ensure focus on the task at hand.</p>
+            <button class="btn-card-action" onclick="activateMode('headpose')">ACTIVATE →</button>
+          </div>
+
+        </div>
+
+        <!-- Integrated Neural Assistant (Neu-Bot) -->
+        <div class="assistant-zone">
+          <div class="bot-icon-glow" onclick="explainCortexa()">
+            <div class="bot-inner-icon">🤖</div>
+          </div>
+          <div class="assistant-bubble" id="assistantBubble">
+            <p class="assistant-text" id="assistantInstruction" style="font-style: normal; font-size: 0.82rem;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ NEURAL TRENDS PANEL ══════ -->
+    <div class="tab-panel hidden" id="panel-trends">
+      <div class="panel-inner trends-inner">
+
+        <!-- Label + Hide toggle row -->
+        <div class="trends-top-row">
+          <span class="trends-label" id="trendsLabel">EMOTION INSIGHT — ACTIVE</span>
+          <button class="btn-visibility" id="btnVisibility" onclick="toggleVisibility()" title="Toggle camera visibility">
+            <span id="visIcon">👁</span> <span id="visText">Show Camera</span>
+          </button>
+        </div>
+
+        <!-- Live metrics — only relevant ones shown per mode -->
+        <div class="metrics-top" id="metricsRow">
+          <div class="metric-chip chip-emotion" id="metricEmotion" style="display:none">😐 Neutral — 0%</div>
+          <div class="metric-chip chip-ear"     id="metricEar"     style="display:none">EAR: — — —</div>
+          <div class="metric-chip chip-headpose" id="metricHeadpose" style="display:none">Head: Centered</div>
+          <div class="metric-chip chip-face"    id="metricFace">No FaceDetected</div>
+        </div>
+
+        <!-- Camera box -->
+        <div class="camera-box" id="cameraBox">
+          <div class="cam-corner tl"></div>
+          <div class="cam-corner tr"></div>
+          <div class="cam-corner bl"></div>
+          <div class="cam-corner br"></div>
+          <div class="scan-line" id="scanLine" style="display:none"></div>
+          
+          <!-- Look Towards Center Alert -->
+          <div id="centerAlert" class="center-alert hidden">
+            <span>⚠️ Look towards center</span>
+          </div>
+
+          <!-- Drowsy Modal Alert -->
+          <div id="drowsyModal" class="hidden" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(220, 38, 38, 0.95); z-index: 50; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+            <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
+            <h2 style="color: white; font-size: 2rem; margin: 0 0 20px 0; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">DROWSINESS DETECTED</h2>
+            <button onclick="dismissDrowsy()" style="background: white; color: #dc2626; border: none; padding: 16px 32px; font-size: 1.2rem; font-weight: 700; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s;">AWAKE</button>
+          </div>
+
+          <!-- LIVE MJPEG STREAM (hidden by default, shown when visible=ON) -->
+          <img id="liveStream"
+               src=""
+               alt="Live camera feed"
+               class="live-stream"
+          />
+
+          <!-- Placeholder shown when stream is hidden or not started -->
+          <div class="cam-inner" id="camInner">
+            <svg class="cam-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+            <h3 id="camTitle">Camera feed ready</h3>
+            <p id="camSub">Press Start Session to connect OpenCV pipeline</p>
+            <p class="api-hint">Backend: <code>python app.py</code> on port 5001</p>
+          </div>
+
+          <!-- Privacy mask (shown when session running but visibility OFF) -->
+          <div class="privacy-mask hidden" id="privacyMask">
+            <span class="privacy-icon">🙈</span>
+            <p>Camera Hidden</p>
+            <small>Click <strong>Show Camera</strong> to reveal</small>
+          </div>
+        </div>
+
+        <!-- STICKY session bar -->
+        <div class="session-sticky">
+          <div class="session-sticky-inner">
+            <button class="btn-start" id="btnStart" onclick="startSession()">▶ Start Session</button>
+            <button class="btn-stop hidden" id="btnStop" onclick="stopSession()">■ Stop Session</button>
+            <span class="session-status" id="sessionStatus">Session inactive</span>
+            <button class="btn-insights-link" onclick="switchTab('insights')">View Insights →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════ INSIGHTS PANEL ══════ -->
+    <div class="tab-panel hidden" id="panel-insights">
+      <div class="panel-inner insights-inner">
+
+        <div class="desc-header">
+          <h2 id="insightTitle">Neural Insights</h2>
+          <p class="desc-sub" id="insightSub">Activate a feature to begin visualizing its neural output.</p>
+        </div>
+
+        <!-- Emotion Insight Charts -->
+        <div id="insightEmotion" class="insight-charts hidden">
+          <div class="insight-grid">
+            <div class="insight-card">
+              <div class="insight-card-hdr">
+                <span class="insight-icon">👥</span>
+                <div>
+                  <h4>Live User Emotion Grid</h4>
+                  <p>Each detected face is classified with its live emotion and confidence score</p>
+                </div>
+              </div>
+              <canvas id="emotionBarChart" width="400" height="200"></canvas>
+            </div>
+            <div class="insight-card">
+              <div class="insight-card-hdr">
+                <span class="insight-icon">📊</span>
+                <div>
+                  <h4>Session Emotion Frequency</h4>
+                  <p>Cumulative count of how many times each emotion was detected this session</p>
+                </div>
+              </div>
+              <canvas id="emotionTrendChart" width="400" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Head Pose Charts -->
+        <div id="insightHeadpose" class="insight-charts hidden">
+          <div class="insight-grid">
+            <div class="insight-card">
+              <div class="insight-card-hdr">
+                <span class="insight-icon">🎯</span>
+                <div>
+                  <h4>Gaze Direction Heatmap</h4>
+                  <p>Frequency map of gaze directions — the hotter the circle, the more time spent looking that way</p>
+                </div>
+              </div>
+              <canvas id="headposeCompass" width="300" height="280"></canvas>
+            </div>
+            <div class="insight-card">
+              <div class="insight-card-hdr">
+                <span class="insight-icon">👁</span>
+                <div>
+                  <h4>Look-Away Timeline &amp; Counter</h4>
+                  <p>Tracks every time you look away (red) vs stay centered (green), with a total distraction count</p>
+                </div>
+              </div>
+              <canvas id="attentionTimeline" width="400" height="280"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drowsy placeholder -->
+        <div id="insightDrowsy" class="insight-charts hidden">
+          <div class="insight-empty">
+            <span class="insight-empty-icon">🚫</span>
+            <h4>No Visualizations Available</h4>
+            <p>AlertGuard focuses on real-time EAR monitoring.<br>No additional visual insights are generated for this feature.</p>
+          </div>
+        </div>
+
+        <!-- Default idle state -->
+        <div id="insightIdle" class="insight-empty">
+          <span class="insight-empty-icon">🔬</span>
+          <h4>Awaiting Feature Activation</h4>
+          <p>Select a Feature from the Features tab and start a session<br>to begin seeing real-time neural visualizations here.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /col-main -->
+
+  <!-- RIGHT COLUMN — Data Driven Sidebar -->
+  <aside class="col-sidebar">
+    <div class="sidebar-card">
+      <div class="card-top">
+        <span class="tag-driven">DATA DRIVEN</span>
+        <div class="card-icon-btns">
+          <button class="icon-btn">→</button>
+          <button class="icon-btn">⋯</button>
+        </div>
+      </div>
+      <h3 class="analysis-title"><span class="dot-accent"></span> Neural Analysis : Empathize &amp; Define</h3>
+      <ul class="meta-rows">
+        <li>
+          <span class="meta-k">Assigned</span>
+          <div class="avatars">
+            <div class="av av1">A</div>
+            <div class="av av2">B</div>
+            <div class="av av3">C</div>
+          </div>
+        </li>
+        <li>
+          <span class="meta-k">Timeline</span>
+          <span class="meta-v">Apr 8 — <span style="color: #4ade80;">Till Validity</span></span>
+        </li>
+        <li>
+          <span class="meta-k">Status</span>
+          <span class="badge-prog">In Progress</span>
+        </li>
+      </ul>
+
+      <!-- Live emotion display in sidebar -->
+      <div class="sidebar-live" id="sidebarLive">
+        <h4 class="live-title">Live Readings</h4>
+        <div class="live-row">
+          <span class="live-label">Emotion</span>
+          <span class="live-val" id="sbEmotion">—</span>
+        </div>
+        <div class="live-row">
+          <span class="live-label">Confidence</span>
+          <div class="conf-bar-bg"><div class="conf-bar-fill" id="confBar"></div></div>
+          <span class="live-val" id="sbConf">0%</span>
+        </div>
+        <div class="live-row">
+          <span class="live-label">Head Pose</span>
+          <span class="live-val" id="sbFocus">—</span>
+        </div>
+        <div class="live-row">
+          <span class="live-label">EAR</span>
+          <span class="live-val" id="sbEar">—</span>
+        </div>
+        <div class="live-row">
+          <span class="live-label">Drowsy</span>
+          <span class="live-val" id="sbDrowsy">—</span>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <h4 class="chart-lbl">TRIAL IMPROVEMENT PATH</h4>
+        <svg viewBox="0 0 200 65" class="sparkline">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#8B5A2B"/>
+              <stop offset="100%" stop-color="#D4704A"/>
+            </linearGradient>
+          </defs>
+          <path id="trialPath" d="M0,55 L35,45 L70,53 L110,28 L155,40 L200,8" fill="none" stroke="url(#lg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle id="trialDot" cx="200" cy="8" r="4" fill="#D4704A"/>
+        </svg>
+        <div class="chart-labels">
+          <span>TRIAL 1</span><span>TRIAL 2</span><span class="lbl-current">CURRENT</span>
+        </div>
+      </div>
+
+      <div class="search-field">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search task…" id="taskSearch"/>
+      </div>
+
+      <div class="task-list">
+        <label class="task-item">
+          <input type="checkbox" checked/>
+          <div>
+            <span class="task-name done">Emotion detection model integration</span>
+          </div>
+        </label>
+        <label class="task-item">
+          <input type="checkbox"/>
+          <div>
+            <span class="task-name">Review neural flow for current users</span>
+            <span class="task-meta">Let us show the steps which will represent a scenario…</span>
+          </div>
+        </label>
+        <label class="task-item">
+          <input type="checkbox"/>
+          <div>
+            <span class="task-name">Integrate real-time API pipeline</span>
+            <span class="task-meta">Connect OpenCV feed to Flask /api/status endpoint.</span>
+          </div>
+        </label>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- /page-wrapper -->
+
+  </div>
+</div>
+
+<!-- Model Notebook Modal -->
+<div class="model-modal hidden" id="modelModal">
+  <div class="model-modal-content">
+    <div class="model-modal-hdr">
+      <h2>CORTEXA AI : MODEL ARCHITECTURE & INFRASTRUCTURE</h2>
+      <button class="btn-close-modal" onclick="closeModelModal()">CLOSE [ESC]</button>
+    </div>
+    <iframe class="model-iframe" src="model.html"></iframe>
+  </div>
+</div>
+
+<!-- Docs Modal -->
+<div class="model-modal hidden" id="docsModal">
+  <div class="model-modal-content">
+    <div class="model-modal-hdr">
+      <h2>CORTEXA AI : SYSTEM DOCUMENTATION</h2>
+      <button class="btn-close-modal" onclick="closeDocsModal()">CLOSE [ESC]</button>
+    </div>
+    <iframe class="model-iframe" src="docs.html"></iframe>
+  </div>
+</div>
+
+<!-- ── FOOTER — Last Activity History ── -->
+<footer class="activity-footer">
+  <div class="activity-inner">
+    <div class="activity-hdr">
+      <span class="activity-title">Last Activity History</span>
+      <div class="activity-right">
+        <div class="activity-filters">
+          <button class="filter-btn active" onclick="filterAct('all',this)">All</button>
+          <button class="filter-btn"        onclick="filterAct('emotion',this)">Emotion</button>
+          <button class="filter-btn"        onclick="filterAct('focus',this)">Head Pose</button>
+          <button class="filter-btn"        onclick="filterAct('drowsy',this)">Drowsiness</button>
+        </div>
+        <button class="btn-clear-history" onclick="clearHistory()" title="Clear all history">
+          🗑 Clear
+        </button>
+      </div>
+    </div>
+    <div class="activity-list" id="activityList">
+      <div class="activity-item" data-type="emotion">
+        <span class="act-dot dot-emotion"></span><span class="act-label">Session not started</span><span class="act-time">---</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── JS ────────────────────────────────────────────────── -->
+<script>
+const API = "http://localhost:5001";
+let polling     = null;
+let activeFilter= "all";
+let activeMode  = "emotion";   // tracks current mode
+let cameraVisible = false;
+let drowsyShown   = false;     // debounce popup
+let alertInterval = null;      // continuous alert tracker
+
+function openModelModal() { document.getElementById("modelModal").classList.remove("hidden"); }
+function closeModelModal() { document.getElementById("modelModal").classList.add("hidden"); }
+function openDocsModal() { document.getElementById("docsModal").classList.remove("hidden"); }
+function closeDocsModal() { document.getElementById("docsModal").classList.add("hidden"); }
+
+// Close modal on ESC key
+document.addEventListener('keydown', (e) => {
+  if (e.key === "Escape") { closeModelModal(); closeDocsModal(); }
+});
+
+const emojiMap = {Fear:"😨",Neutral:"😐",Sad:"😢",Angry:"😠",Happy:"😊",Disgust:"🤢",Surprise:"😲"};
+const dotMap   = {emotion:"dot-emotion",focus:"dot-focus",drowsy:"dot-drowsy"};
+
+let audioCtx = null;
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function playDrowsyBeep() {
+  try {
+    initAudio();
+    const osc  = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.type      = "sine";
+    osc.frequency.setValueAtTime(520, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.6, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+    osc.start(); osc.stop(audioCtx.currentTime + 1.2);
+  } catch(e) { console.warn("Audio play failed: ", e); }
+}
+
+/* ── Drowsy modal ── */
+function showDrowsyPopup() {
+  if (drowsyShown) return;
+  drowsyShown = true;
+  const modal = document.getElementById("drowsyModal");
+  if(modal) {
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+  }
+  
+  // Start continuous beep every 1.5s
+  playDrowsyBeep();
+  if (alertInterval) clearInterval(alertInterval);
+  alertInterval = setInterval(playDrowsyBeep, 1500);
+}
+
+function dismissDrowsy() {
+  const modal = document.getElementById("drowsyModal");
+  if(modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  }
+  
+  // Stop continuous beep
+  if (alertInterval) {
+    clearInterval(alertInterval);
+    alertInterval = null;
+  }
+  
+  // Re-arm after 10s so repeated drowsiness can re-trigger
+  setTimeout(() => { drowsyShown = false; }, 10000);
+}
+
+/* ── Tab switch ─────────────────────────────────────── */
+function switchTab(id) {
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.add("hidden"));
+  document.getElementById("tab-"+id).classList.add("active");
+  document.getElementById("panel-"+id).classList.remove("hidden");
+  // Redraw charts from cached data when switching to Insights
+  if (id === "insights") setTimeout(_redrawInsights, 50);
+}
+
+/* ── Assistant Bot Instructions ─────────────────────── */
+const botInstructions = {
+  emotion:  "Ensure your face is well-lit. We are mapping your micro-expressions to decode joy, surprise, or fatigue in real-time.",
+  drowsy:   "Monitoring your EAR (Eye Aspect Ratio). If your eyes remain closed for more than 2.5s, I'll trigger an alert.",
+  headpose: "Tracking your gaze and head orientation. Please look towards the center to maintain neural synchronization."
+};
+
+let botTimer = null;
+
+function explainCortexa() {
+  const b = document.getElementById("assistantBubble");
+  const t = document.getElementById("assistantInstruction");
+  
+  if (b.classList.contains("active")) {
+    hideBotBubble();
+    return;
+  }
+
+  // Content for "How it works"
+  const msg = "<b>Instructions</b><br>1. Select any Featured Card Above<br>2. Click Activate<br>3. Linked to neural session<br>4. <a href='#' onclick='switchTab(\"insights\"); return false;' style='color: #ecc94b; text-decoration: underline;'>View Insights</a>";
+  t.innerHTML = msg;
+  b.classList.add("active");
+
+  clearTimeout(botTimer);
+  botTimer = setTimeout(hideBotBubble, 8000);
+}
+
+function hideBotBubble() {
+  document.getElementById("assistantBubble").classList.remove("active");
+}
+
+/* ── Activate mode (from any feature button) ────────── */
+function activateMode(mode) {
+  activeMode    = mode;
+  cameraVisible = false;   // hide camera until session confirms
+  switchTab("trends");
+  showModeChips(mode);
+  setTrendsLabel(mode);
+
+  // Show "Session not started" while backend connects
+  const camTitle = document.getElementById("camTitle");
+  const camSub   = document.getElementById("camSub");
+  if (camTitle) camTitle.textContent = "Session not started";
+  if (camSub)   camSub.textContent   = "Connecting to neural module…";
+  applyVisibility();   // ensure placeholder is visible, not stream
+
+  startSession(mode);  // async — camera appears once backend confirms
+
+  // Update Assistant contextually
+  const msg = botInstructions[mode];
+  if (msg) {
+    const b = document.getElementById("assistantBubble");
+    const t = document.getElementById("assistantInstruction");
+    t.innerHTML = `<b>${mode.toUpperCase()} — Active:</b><br>${msg}`;
+    b.classList.add("active");
+    clearTimeout(botTimer);
+    botTimer = setTimeout(hideBotBubble, 6000);
+  }
+}
+
+// Legacy alias kept for any remaining calls
+function activateAndSwitch() { activateMode("emotion"); }
+
+/* ── Set which metrics chips are visible ─────────────── */
+function showModeChips(mode) {
+  // Hide all, then show relevant ones
+  hide("metricEmotion"); hide("metricEar"); hide("metricHeadpose");
+  if (mode === "emotion")   show("metricEmotion");
+  if (mode === "drowsy")    show("metricEar");
+  if (mode === "headpose")  show("metricHeadpose");
+}
+
+/* ── Update trends label to match mode ───────────────── */
+function setTrendsLabel(mode) {
+  const labels = {
+    emotion:  "EMOTION INSIGHT — FEATURE ACTIVE",
+    drowsy:   "ALERTGUARD — FEATURE ACTIVE",
+    headpose: "ATTENTION MATRIX — FEATURE ACTIVE",
+  };
+  const el = document.getElementById("trendsLabel");
+  if (!el) return;
+  
+  el.textContent = labels[mode] || "NEURAL TRENDS — ACTIVE";
+  el.style.color = "";
+}
+
+/* ── API status pill ─────────────────────────────────── */
+async function checkApi() {
+  try {
+    const r = await fetch(API+"/api/status", {signal: AbortSignal.timeout(1500)});
+    if (r.ok) { setApiPill(true); return true; }
+  } catch(_) {}
+  setApiPill(false);
+  return false;
+}
+function setApiPill(online) {
+  const el = document.getElementById("apiStatus");
+  el.textContent = online ? "● Online" : "● Offline";
+  el.className   = "api-pill " + (online ? "pill-online" : "pill-offline");
+}
+
+/* ── Start session (pass mode to backend) ────────────── */
+async function startSession(mode) {
+  mode = mode || activeMode || "emotion";
+  const alive = await checkApi();
+  if (!alive) { setStatus("⚠ Backend offline — run: python app.py"); return; }
+  try {
+    const r = await fetch(API+"/api/start", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({mode})
+    });
+    const d = await r.json();
+    if (d.ok) {
+      show("btnStop"); hide("btnStart");
+      cameraVisible = true;
+      scanOn(true);
+      setStatus("Session running — "+mode+" feature");
+      applyVisibility();
+      startPolling();
+    }
+  } catch(e) { setStatus("Error starting session."); }
+}
+
+/* ── Stop session ────────────────────────────────────── */
+async function stopSession() {
+  try { await fetch(API+"/api/stop", {method:"POST"}); } catch(_) {}
+  stopPolling();
+  show("btnStart"); hide("btnStop");
+  cameraVisible = false;
+  applyVisibility();
+  document.getElementById("scanLine").style.display = "none";
+  setStatus("Session stopped.");
+  document.getElementById("trendsLabel").textContent = "EMOTION INSIGHT — PAUSED";
+  document.getElementById("trendsLabel").style.color = "";
+  drowsyShown = false;
+  // Keep Insights visible with last session data
+  setTimeout(_redrawInsights, 200);
+}
+
+/* ── Polling ─────────────────────────────────────────── */
+function startPolling() {
+  if (polling) clearInterval(polling);
+  polling = setInterval(fetchStatus, 600);
+}
+function stopPolling() { if (polling) { clearInterval(polling); polling = null; } }
+
+async function fetchStatus() {
+  try {
+    const r = await fetch(API+"/api/status");
+    const d = await r.json();
+    updateUI(d);
+    setApiPill(true);
+  } catch(_) { setApiPill(false); }
+}
+
+/* ── Update UI from API ──────────────────────────────── */
+function updateUI(d) {
+  const mode  = d.mode || activeMode;
+  const emoji = emojiMap[d.emotion] || "😐";
+
+  // 1. Trends label management (Global)
+  const lbl = document.getElementById("trendsLabel");
+  if (lbl) {
+    if (d.drowsiness) {
+      lbl.textContent = "⚠ DROWSINESS DETECTED!";
+      lbl.style.color = "#D4704A";
+    } else {
+      const labels = {
+        emotion:     "EMOTION INSIGHT — FEATURE ACTIVE",
+        drowsy:      "ALERTGUARD — FEATURE ACTIVE",
+        headpose:    "ATTENTION MATRIX — FEATURE ACTIVE",
+      };
+      lbl.textContent = labels[mode] || "NEURAL TRENDS — ACTIVE";
+      lbl.style.color = "";
+    }
+  }
+
+  // 2. Mode-specific metrics & effects
+  if (mode === "emotion") {
+    setText("metricEmotion", `${emoji} ${d.emotion} — ${d.confidence}%`);
+  } else if (mode === "drowsy") {
+    setText("metricEar", `EAR: ${(d.ear||0).toFixed(2)} — ${d.earStatus||"—"}`);
+    if (d.drowsiness) showDrowsyPopup();
+    else              drowsyShown = false;
+    document.getElementById("cameraBox").classList.toggle("drowsy-flash", !!d.drowsiness);
+  } else if (mode === "headpose") {
+    setText("metricHeadpose", `Head: ${d.headPose||"Centered"}`);
+  }
+
+  // Look Towards Center Alert
+  const cAlert = document.getElementById("centerAlert");
+  if (d.lookTowardsCenter) cAlert.classList.remove("hidden");
+  else                     cAlert.classList.add("hidden");
+
+  // Face chip (always shown)
+  setText("metricFace", d.faceDetected ? "😊 Face Detected" : "No Face");
+
+  // Sidebar live readings
+  setText("sbEmotion", emoji+" "+d.emotion);
+  setText("sbFocus",   d.headPose || "Centered");
+  setText("sbEar",     (d.ear||0).toFixed(2)+" "+d.earStatus);
+  setText("sbDrowsy",  d.drowsiness ? "⚠ YES" : "No");
+  setText("sbConf",    d.confidence+"%");
+  const bar = document.getElementById("confBar");
+  if (bar) bar.style.width = (d.confidence||0)+"%";
+
+  // Chat bubble
+  setText("chatText", `"${emoji} I sense ${d.emotion} — try me!"`);
+
+  // History
+  if (d.history && d.history.length) renderHistory(d.history);
+
+  // Insights charts
+  updateInsightCharts(d);
+
+  // Trial Graph
+  updateTrialGraph(d);
+}
+
+let trialData = [55, 45, 53, 28, 40, 8];
+function updateTrialGraph(d) {
+  if (!d.running) return;
+  const mode = d.mode || activeMode;
+  let val = 30; // default middle
+  if (mode === "emotion") {
+    // 0 to 100 confidence maps to 60 (bottom) to 5 (top)
+    val = 60 - ((d.confidence||0) / 100) * 55;
+  } else if (mode === "headpose") {
+    val = d.headPose === "Centered" ? 15 : 55;
+  } else if (mode === "drowsy") {
+    // EAR usually 0.15 (closed) to 0.35 (open)
+    const ear = Math.max(0.15, Math.min(0.35, d.ear || 0.35));
+    val = 60 - ((ear - 0.15) / 0.20) * 55;
+  }
+  
+  trialData.push(Math.round(val));
+  if (trialData.length > 6) trialData.shift();
+
+  const xCoords = [0, 35, 70, 110, 155, 200];
+  let pathStr = "M" + xCoords[0] + "," + trialData[0];
+  for (let i = 1; i < trialData.length; i++) {
+    pathStr += " L" + xCoords[i] + "," + trialData[i];
+  }
+  
+  const pathEl = document.getElementById("trialPath");
+  const dotEl = document.getElementById("trialDot");
+  if (pathEl) pathEl.setAttribute("d", pathStr);
+  if (dotEl) {
+    const lastIdx = trialData.length - 1;
+    dotEl.setAttribute("cx", xCoords[lastIdx]);
+    dotEl.setAttribute("cy", trialData[lastIdx]);
+  }
+}
+
+
+/* ── History ─────────────────────────────────────────── */
+function renderHistory(items) {
+  const list = document.getElementById("activityList");
+  list.innerHTML = "";
+  items.forEach(item => {
+    if (activeFilter !== "all" && item.type !== activeFilter) return;
+    const secs = Math.floor(Date.now()/1000 - item.ts);
+    const ago  = secs < 60 ? secs+"s ago" : Math.floor(secs/60)+"m ago";
+    const div  = document.createElement("div");
+    div.className = "activity-item"; div.dataset.type = item.type;
+    div.innerHTML = `<span class="act-dot ${dotMap[item.type]||"dot-emotion"}"></span>
+                     <span class="act-label">${item.label}</span>
+                     <span class="act-time">${ago}</span>`;
+    list.appendChild(div);
+  });
+}
+
+/* ── Insights Chart Engine v2 ────────────────────────── */
+const _emotionFreq  = {};  // { emotion: count } accumulated this session
+const _attnTrend    = [];  // rolling 0/1 attention score
+const TREND_MAX     = 40;
+let   _lastStatusData = null;  // cache last polled data for post-session render
+
+function _showInsightSection(mode) {
+  ["insightEmotion","insightHeadpose","insightDrowsy","insightIdle"].forEach(id => {
+    document.getElementById(id).classList.add("hidden");
+  });
+  const map = { emotion:"insightEmotion", headpose:"insightHeadpose", drowsy:"insightDrowsy" };
+  if (map[mode]) document.getElementById(map[mode]).classList.remove("hidden");
+  else document.getElementById("insightIdle").classList.remove("hidden");
+}
+
+/* Called whenever the Insights tab is opened or session stops */
+function _redrawInsights() {
+  const mode = (_lastStatusData && _lastStatusData.mode) || activeMode || "emotion";
+  _showInsightSection(mode);
+
+  const d = _lastStatusData || {
+    emotion: "Neutral",
+    confidence: 0,
+    faces: [],
+    poseCounts: {"Looking Left":0,"Looking Right":0,"Looking Up":0,"Looking Down":0,"Centered":0},
+    awayCount: 0
+  };
+
+  if (mode === "emotion") {
+    _drawMultiFaceGrid(d.faces || [], d.emotion, d.confidence);
+    _drawEmotionFrequency(_emotionFreq);
+  } else if (mode === "headpose") {
+    _drawGazeHeatmap(d.poseCounts || {});
+    _drawLookAwayTimeline(_attnTrend, d.awayCount || 0);
+  }
+}
+
+function updateInsightCharts(d) {
+  const mode = d.mode || activeMode;
+
+  // ALWAYS accumulate data, regardless of which tab is active
+  _lastStatusData = d;  // cache latest snapshot
+
+  if (mode === "emotion") {
+    const emo = d.emotion || "Neutral";
+    _emotionFreq[emo] = (_emotionFreq[emo] || 0) + 1;
+  } else if (mode === "headpose") {
+    const score = (d.headPose === "Centered") ? 1.0 : 0.0;
+    _attnTrend.push(score);
+    if (_attnTrend.length > TREND_MAX) _attnTrend.shift();
+  }
+
+  // Only draw to canvas if Insights tab is currently visible
+  if (document.getElementById("panel-insights").classList.contains("hidden")) return;
+  _redrawInsights();
+}
+
+/* ── EMOTION CHART 1: Multi-face user emotion grid ──── */
+function _drawMultiFaceGrid(faces, primaryEmotion, primaryConf) {
+  const canvas = document.getElementById("emotionBarChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = "#000000"; ctx.fillRect(0,0,W,H);
+
+  const emoColors = {
+    Happy:"#48BB78", Sad:"#4299E1", Angry:"#F56565",
+    Surprise:"#ECC94B", Fear:"#9F7AEA", Disgust:"#ED8936", Neutral:"#A0AEC0"
+  };
+
+  // If no multi-face data, show single-face fallback
+  const display = (faces && faces.length > 0) ? faces : [{id:1, emotion: primaryEmotion||"Neutral", confidence: primaryConf||0}];
+
+  const cols  = Math.min(display.length, 4);
+  const cardW = Math.floor((W - 20) / cols);
+  const cardH = H - 20;
+
+  display.forEach((face, i) => {
+    if (i >= 4) return;  // max 4 users shown
+    const x = 10 + i * cardW;
+    const y = 10;
+    const color = emoColors[face.emotion] || "#A0AEC0";
+
+    // Card background
+    ctx.fillStyle = "rgba(27,58,92,0.6)";
+    ctx.beginPath(); ctx.roundRect(x, y, cardW-8, cardH, 8); ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.roundRect(x, y, cardW-8, cardH, 8); ctx.stroke();
+
+    // User label
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 11px Inter, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(`USER ${face.id}`, x + (cardW-8)/2, y + 20);
+
+    // Emotion circle
+    const cx = x + (cardW-8)/2;
+    const cy = y + 70;
+    ctx.beginPath(); ctx.arc(cx, cy, 28, 0, Math.PI*2);
+    ctx.fillStyle = color + "33"; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(cx, cy, 28, 0, Math.PI*2); ctx.stroke();
+
+    // Confidence arc
+    const startA = -Math.PI/2;
+    const endA   = startA + (face.confidence/100) * Math.PI*2;
+    ctx.beginPath(); ctx.arc(cx, cy, 34, startA, endA);
+    ctx.strokeStyle = color; ctx.lineWidth = 3;
+    ctx.lineCap = "round"; ctx.stroke();
+
+    // Emotion name
+    ctx.fillStyle = color;
+    ctx.font = "bold 11px Inter, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(face.emotion, cx, cy + 52);
+
+    // Confidence
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "10px Inter";
+    ctx.fillText(face.confidence + "%", cx, cy + 66);
+  });
+
+  // "No face" state
+  if (display.length === 0) {
+    _emptyChart(ctx, W, H, "No faces detected");
+  }
+}
+
+/* ── EMOTION CHART 2: Session Emotion Frequency ─────── */
+function _drawEmotionFrequency(freq) {
+  const canvas = document.getElementById("emotionTrendChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = "#000000"; ctx.fillRect(0,0,W,H);
+
+  const emoColors = {
+    Happy:"#48BB78", Sad:"#4299E1", Angry:"#F56565",
+    Surprise:"#ECC94B", Fear:"#9F7AEA", Disgust:"#ED8936", Neutral:"#A0AEC0"
+  };
+  const keys = Object.keys(freq);
+  if (keys.length === 0) { _emptyChart(ctx, W, H, "No emotion data yet"); return; }
+
+  const maxVal = Math.max(...Object.values(freq), 1);
+  const pad = {t:30, r:15, b:35, l:45};
+  const cW = W - pad.l - pad.r;
+  const cH = H - pad.t - pad.b;
+  const barW = Math.floor(cW / keys.length) - 6;
+
+  // Title
+  ctx.fillStyle = "#ffffff"; ctx.font = "11px Inter";
+  ctx.textAlign = "center"; ctx.fillText("Session Emotion Frequency", W/2, 18);
+
+  // Y-axis grid
+  [0, 0.5, 1].forEach(v => {
+    const y = pad.t + cH - v * cH;
+    ctx.strokeStyle = "rgba(255,255,255,0.07)"; ctx.lineWidth = 1;
+    ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l+cW, y); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = "#ffffff"; ctx.font = "9px Inter";
+    ctx.textAlign = "right";
+    ctx.fillText(Math.round(v * maxVal), pad.l-4, y+3);
+  });
+
+  keys.forEach((emo, i) => {
+    const count   = freq[emo];
+    const color   = emoColors[emo] || "#A0AEC0";
+    const bH      = Math.max(2, Math.floor((count / maxVal) * cH));
+    const bX      = pad.l + i * (barW + 6);
+    const bY      = pad.t + cH - bH;
+
+    // Bar gradient
+    const grad = ctx.createLinearGradient(0, bY, 0, bY+bH);
+    grad.addColorStop(0, color); grad.addColorStop(1, color+"44");
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.roundRect(bX, bY, barW, bH, 4); ctx.fill();
+
+    // Count label on top
+    ctx.fillStyle = color; ctx.font = "bold 11px Inter";
+    ctx.textAlign = "center";
+    ctx.fillText(count, bX + barW/2, bY - 5);
+
+    // Emotion label at bottom
+    ctx.fillStyle = "#ffffff"; ctx.font = "9px Inter";
+    ctx.fillText(emo.substring(0,3), bX + barW/2, pad.t + cH + 14);
+  });
+}
+
+/* ── HEAD POSE CHART 1: Gaze Direction Heatmap ───────── */
+function _drawGazeHeatmap(poseCounts) {
+  const canvas = document.getElementById("headposeCompass");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = "#000000"; ctx.fillRect(0,0,W,H);
+
+  const cx = W/2, cy = H/2;
+  const total = Object.values(poseCounts).reduce((a,b)=>a+b,0) || 1;
+
+  const cells = [
+    { key:"Looking Up",    x:cx,          y:cy-70,  label:"↑ Up" },
+    { key:"Looking Down",  x:cx,          y:cy+70,  label:"↓ Down" },
+    { key:"Looking Left",  x:cx-75,       y:cy,     label:"← Left" },
+    { key:"Looking Right", x:cx+75,       y:cy,     label:"→ Right" },
+    { key:"Centered",      x:cx,          y:cy,     label:"● Centered" },
+  ];
+
+  // draw center ring background
+  ctx.beginPath(); ctx.arc(cx, cy, 95, 0, Math.PI*2);
+  ctx.strokeStyle = "rgba(201,123,75,0.15)"; ctx.lineWidth = 1; ctx.stroke();
+
+  cells.forEach(cell => {
+    const count = poseCounts[cell.key] || 0;
+    const ratio = count / total;
+    const r     = 28;
+
+    // Heat color: green (low) → red (high) for away directions; always green for centered
+    let color;
+    if (cell.key === "Centered") {
+      color = `rgba(72,187,120,${0.3 + ratio * 0.7})`;
+    } else {
+      const intensity = Math.min(ratio * 4, 1);
+      const r_c = Math.round(72 + (245-72)*intensity);
+      const g_c = Math.round(187 + (101-187)*intensity);
+      color = `rgba(${r_c},${g_c},101,${0.25 + ratio*0.75})`;
+    }
+
+    ctx.beginPath(); ctx.arc(cell.x, cell.y, r, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.fill();
+    ctx.strokeStyle = (cell.key === "Centered") ? "#48BB78" : "#F56565";
+    ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Count in circle
+    ctx.fillStyle = "#fff"; ctx.font = "bold 12px Inter";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(count, cell.x, cell.y);
+
+    // Label below
+    ctx.fillStyle = "#ffffff"; ctx.font = "9px Inter";
+    ctx.textBaseline = "top";
+    ctx.fillText(cell.label, cell.x, cell.y + r + 4);
+  });
+
+  // Title
+  ctx.fillStyle = "#ffffff"; ctx.font = "11px Inter";
+  ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+  ctx.fillText("Gaze Direction Frequency", cx, H-5);
+}
+
+/* ── HEAD POSE CHART 2: Look-Away Timeline ───────────── */
+function _drawLookAwayTimeline(data, awayCount) {
+  const canvas = document.getElementById("attentionTimeline");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = "#000000"; ctx.fillRect(0,0,W,H);
+
+  if (data.length < 2) { _emptyChart(ctx, W, H, "Collecting attention data…"); return; }
+
+  const pad = {t:40, r:15, b:35, l:45};
+  const cW = W - pad.l - pad.r;
+  const cH = H - pad.t - pad.b;
+
+  // Title + counter badge
+  ctx.fillStyle = "#ffffff"; ctx.font = "11px Inter";
+  ctx.textAlign = "left"; ctx.textBaseline = "top";
+  ctx.fillText("Attention Timeline", pad.l, 8);
+
+  // Away count badge
+  ctx.fillStyle = awayCount > 0 ? "#F56565" : "#48BB78";
+  ctx.beginPath(); ctx.roundRect(W - 110, 5, 100, 22, 4); ctx.fill();
+  ctx.fillStyle = "#fff"; ctx.font = "bold 10px Inter";
+  ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.fillText(`👁 ${awayCount} Look-Away${awayCount !== 1 ? "s" : ""}`, W - 60, 16);
+
+  // Y labels
+  ["0.0","", "1.0"].forEach((v,i) => {
+    if (!v) return;
+    const y = pad.t + cH - parseFloat(v)*cH;
+    ctx.fillStyle = "#ffffff"; ctx.font = "9px Inter";
+    ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    ctx.fillText(v, pad.l-4, y);
+    ctx.strokeStyle = "rgba(255,255,255,0.06)"; ctx.lineWidth = 1;
+    ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(pad.l+cW,y); ctx.stroke();
+    ctx.setLineDash([]);
+  });
+
+  // Gradient fill
+  const grad = ctx.createLinearGradient(0,pad.t,0,pad.t+cH);
+  grad.addColorStop(0,"rgba(72,187,120,0.35)"); grad.addColorStop(1,"rgba(245,101,101,0.15)");
+  ctx.beginPath();
+  data.forEach((v,i) => {
+    const x = pad.l + (i/(TREND_MAX-1))*cW;
+    const y = pad.t + cH - v*cH;
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.lineTo(pad.l+((data.length-1)/(TREND_MAX-1))*cW,pad.t+cH);
+  ctx.lineTo(pad.l,pad.t+cH); ctx.closePath();
+  ctx.fillStyle = grad; ctx.fill();
+
+  // Line — color changes: green when centered, red when away
+  for (let i=1; i<data.length; i++) {
+    const x1 = pad.l + ((i-1)/(TREND_MAX-1))*cW;
+    const y1 = pad.t + cH - data[i-1]*cH;
+    const x2 = pad.l + (i/(TREND_MAX-1))*cW;
+    const y2 = pad.t + cH - data[i]*cH;
+    ctx.strokeStyle = data[i] === 1 ? "#48BB78" : "#F56565";
+    ctx.lineWidth = 2.5; ctx.lineJoin = "round";
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  }
+
+  // X axis labels
+  ctx.fillStyle = "#ffffff"; ctx.font = "9px Inter";
+  ctx.textAlign = "center";
+  ctx.fillText("← Last " + TREND_MAX + " samples (oldest → newest) →", pad.l+cW/2, pad.t+cH+20);
+}
+
+function _emptyChart(ctx, W, H, msg) {
+  ctx.fillStyle = "#ffffff"; ctx.font = "13px Inter";
+  ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.fillText(msg, W/2, H/2);
+}
+
+
+
+
+function filterAct(type, btn) {
+  activeFilter = type;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".activity-item").forEach(el => {
+    el.style.display = (type==="all" || el.dataset.type===type) ? "flex" : "none";
+  });
+}
+
+async function clearHistory() {
+  try { await fetch(API+"/api/history/clear", {method:"POST"}); } catch(_) {}
+  document.getElementById("activityList").innerHTML =
+    `<div class="act-empty">History cleared</div>`;
+}
+
+/* ── Camera visibility (smooth opacity fade) ─────── */
+function applyVisibility() {
+  const stream  = document.getElementById("liveStream");
+  const ph      = document.getElementById("camInner");
+  const mask    = document.getElementById("privacyMask");
+  const btnV    = document.getElementById("btnVisibility");
+  const icon    = document.getElementById("visIcon");
+  const txt     = document.getElementById("visText");
+  const running = document.getElementById("btnStart")?.classList.contains("hidden");
+
+  if (running) {
+    // Always load the stream src once session is running — don't clear it
+    if (!stream.src || stream.src === window.location.href || stream.src === "") {
+      stream.src = API + "/api/video_feed";
+    }
+    ph.classList.add("hidden");
+
+    if (cameraVisible) {
+      // Smooth fade IN
+      stream.classList.add("stream-visible");
+      mask.classList.add("hidden");
+      txt.textContent  = "Hide Camera";
+      btnV.classList.add("btn-vis-active");
+      document.getElementById("cameraBox").classList.remove("nv-active");
+    } else {
+      // Smooth fade OUT — stream still running in background
+      stream.classList.remove("stream-visible");
+      mask.classList.remove("hidden");
+      icon.textContent = "👁";
+      txt.textContent  = "Show Camera";
+      btnV.classList.remove("btn-vis-active");
+      document.getElementById("cameraBox").classList.remove("nv-active");
+    }
+  } else {
+    // Session not running — clear stream and show placeholder
+    stream.classList.remove("stream-visible");
+    stream.src = "";
+    ph.classList.remove("hidden");
+    mask.classList.add("hidden");
+    icon.textContent = "👁";
+    txt.textContent  = "Show Camera";
+    btnV.classList.remove("btn-vis-active");
+    document.getElementById("cameraBox").classList.remove("nv-active");
+  }
+}
+
+function toggleVisibility() {
+  cameraVisible = !cameraVisible;
+  applyVisibility();
+}
+
+function scanOn(on) {
+  document.getElementById("scanLine").style.display = on ? "block" : "none";
+  if (on) {
+    setText("camTitle", "Camera feed active");
+    setText("camSub",   "Processing frames from OpenCV…");
+  }
+  applyVisibility();
+}
+
+
+/* ── Helpers ─────────────────────────────────────────── */
+function setText(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+function show(id) { document.getElementById(id)?.classList.remove("hidden"); }
+function hide(id) { document.getElementById(id)?.classList.add("hidden"); }
+function setStatus(msg) { setText("sessionStatus", msg); }
+
+/* ── Task search ─────────────────────────────────────── */
+document.getElementById("taskSearch").addEventListener("input", function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll(".task-item").forEach(t => {
+    t.style.display = t.textContent.toLowerCase().includes(q) ? "flex" : "none";
+  });
+});
+
+/* ── Ping API on load ────────────────────────────────── */
+checkApi();
+setInterval(checkApi, 5000);
+</script>
+
+</body>
+</html>

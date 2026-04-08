@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cortexa AI - Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #FFFFFF;
+      --bg-card: #F8FAFC;
+      --text-main: #1E293B;
+      --text-muted: #475569;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --border: #E2E8F0;
+      --code-bg: #F1F5F9;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1, h2, h3 {
+      color: var(--text-main);
+      font-weight: 600;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      color: var(--accent);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--text-main);
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    ul, ol {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .strong-text {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* Code Block Styles */
+    .code-container {
+      position: relative;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    pre {
+      margin: 0;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .copy-btn.copied {
+      background: #22c55e;
+      color: #fff;
+      border-color: #22c55e;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Cortexa — Beyond the Imagination</h1>
+
+    <div class="feature-card">
+      <h2>Project Description</h2>
+      <p>That is a powerhouse of a tech stack! Since Cortexa AI covers a range of complex behaviors—emotions, alertness (drowsiness), and spatial orientation (head pose).</p>
+      <p>Cortexa AI is an advanced computer vision system designed to quantify human behavior through real-time facial analysis. By integrating Deep Learning models via TensorFlow, the platform simultaneously tracks emotional states, monitors fatigue levels through drowsiness detection, and calculates 3D head orientation.</p>
+    </div>
+
+    <h2>Key Features</h2>
+    <ol>
+      <li>
+        <span class="strong-text">Multi-Dimensional Behavioral Analytics</span>
+        <ul>
+          <li><strong>Real-time Emotion Mapping:</strong> Identifies micro-expressions to gauge sentiment and mental well-being.</li>
+          <li><strong>Predictive Drowsiness Alerts:</strong> Uses Eye Aspect Ratio (EAR) and blink frequency to provide early warnings for fatigue—critical for drivers or night-shift workers.</li>
+          <li><strong>3D Head Pose Estimation:</strong> Tracks spatial orientation (Pitch, Yaw, and Roll) to monitor attention levels and ergonomic posture.</li>
+        </ul>
+      </li>
+      <li><span class="strong-text">Behavioral Dashboards:</span> Interactive charts that visualize emotional trends over time.</li>
+      <li><span class="strong-text">Personalized Calibration:</span> A smart setup wizard that helps the AI learn the user's neutral face and "resting" pose for higher accuracy.</li>
+      <li>
+        <span class="strong-text">Universal Cross-Platform Architecture</span>
+        <ul>
+          <li><strong>Write Once, Deploy Anywhere:</strong> Built with a decoupled Flask-CORS backend, allowing the same logic to power a Chrome Extension (for productivity), a Mobile App (for driving safety), or a Web Portal (for remote learning).</li>
+          <li><strong>Lightweight Edge Processing:</strong> Optimized for low latency, ensuring the video stream is processed efficiently regardless of the device hardware.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2>How to Run Locally</h2>
+
+    <p><strong>Prerequisites:</strong> Make sure you have Python (3.7+)</p>
+
+    <h3>1. Setup</h3>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this, 'code-setup')">Copy</button>
+      <pre id="code-setup">git clone https://github.com/abinavgt/Cortexa.git
+cd ./cortexai-main</pre>
+    </div>
+
+    <h3>2. Activate your Virtual Environment</h3>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this, 'code-venv')">Copy</button>
+      <pre id="code-venv">python -m venv myenv --without-pip
+myenv\Scripts\python -m ensurepip --upgrade
+myenv\Scripts\activate</pre>
+    </div>
+
+    <h3>3. Install Dependencies</h3>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this, 'code-deps')">Copy</button>
+      <pre id="code-deps">pip install -r requirements.txt</pre>
+    </div>
+
+    <h3>4. Run the Application</h3>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this, 'code-run')">Copy</button>
+      <pre id="code-run">python app.py</pre>
+    </div>
+
+    <h2>Outcomes</h2>
+    <ol>
+      <li><span class="strong-text">Synchronous Inference:</span> Successfully achieved real-time, simultaneous execution of three deep learning models (Emotion, Drowsiness, and Head Pose) without significant frame-rate drops.</li>
+      <li><span class="strong-text">Precision Accuracy:</span> Reliable detection of micro-expressions and eye closure patterns, providing a high degree of confidence in the generated behavioral data.</li>
+      <li><span class="strong-text">Visual Trend Analysis:</span> Users can identify specific times of day when their focus drops or their stress (emotions) peaks through the integrated dashboard.</li>
+      <li><span class="strong-text">Universal Compatibility:</span> The system is optimized to run across different hardware environments, from standard PC webcams to mobile camera modules.</li>
+    </ol>
+
+  </div>
+
+  <script>
+    function copyCode(btn, elementId) {
+      const codeText = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(codeText).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy!', err);
+      });
+    }
+  </script>
+</body>
+</html>
